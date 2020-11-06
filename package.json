@@ -1,0 +1,21 @@
+{
+    "name": "retrosagainsthumanity",
+    "description": "",
+    "authors": "Co2p",
+    "version": "1.0.0",
+    "main": "",
+    "scripts": {
+        "build": "rollup -c",
+        "dev": "rollup -cw"
+    },
+    "dependencies": {},
+    "devDependencies": {
+        "rollup": "^2.32.0",
+        "@rollup/plugin-json": "^4.1.0",
+        "@types/sass": "^1.16.0",
+        "node-sass": "^4.14.1",
+        "rollup-plugin-scss": "^2.6.1",
+        "rollup-plugin-terser": "^7.0.2",
+        "sass": "^1.27.0"
+    }
+}

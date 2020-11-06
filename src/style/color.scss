@@ -1,0 +1,74 @@
+$black1: hsl(0, 0%, 0%);
+$black2: hsl(0, 0%, 10%);
+$white1: hsl(0, 0%, 100%);
+$blue1: hsl(207, 39%, 47%);
+$blue2: hsl(207, 39%, 35%);
+$red1: hsl(2, 39%, 47%);
+$red2: hsl(2, 39%, 35%);
+$orange1: hsl(30, 39%, 47%);
+$orange2: hsl(30, 39%, 35%);
+
+.front {
+
+    &.good {
+        @extend .bg-blue1;
+        background: linear-gradient($blue1, $blue2);
+    }
+    
+    &.bad {
+        @extend .bg-red1;
+        background: linear-gradient($red1, $red2);
+    }
+    
+    &.improve {
+        @extend .bg-black1;
+        background: linear-gradient($black1, $black2);
+    }
+
+}
+
+
+.bg-blue1 {
+    color: $white1;
+    background-color: $blue1;
+}
+
+.bg-red1 {
+    color: $white1;
+    background-color: $red1;
+}
+
+.bg-orange1 {
+    color: $white1;
+    background-color: $orange1;
+}
+
+.bg-blue2 {
+    color: $white1;
+    background-color: $blue2;
+}
+
+.bg-red2 {
+    color: $white1;
+    background-color: $red2;
+}
+
+.bg-orange2 {
+    color: $white1;
+    background-color: $orange2;
+}
+
+.bg-black1 {
+    color: $white1;
+    background-color: $black1;
+}
+
+.bg-black2 {
+    color: $white1;
+    background-color: $black2;
+}
+
+.bg-white {
+    color: $black1;
+    background-color: $white1;
+}
