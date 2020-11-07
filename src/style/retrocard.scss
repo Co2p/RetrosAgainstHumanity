@@ -1,17 +1,14 @@
 $cardWidth: 12em;
 $cardHeight: 19.2em;
 
-$saturation: 70%;
-$darkL: 35%;
-
 $blue1: hsl(207, 70%, 60%);
-$blue2: hsl(207, 70%, $darkL);
+$blue2: hsl(207, 70%, 35%);
 $green1: hsl(123, 60%, 60% - 35);
-$green2: hsl(123, 60%, $darkL - 20);
+$green2: hsl(123, 60%, 5%);
 $red1: hsl(2, 60%, 60% - 15);
-$red2: hsl(2, 60%, $darkL - 10);
+$red2: hsl(2, 60%, 25%);
 $orange1: hsl(25, 70%, 60%);
-$orange2: hsl(25, 70%, $darkL + 5);
+$orange2: hsl(25, 70%, 40%);
 
 .card {
     width: $cardWidth;
