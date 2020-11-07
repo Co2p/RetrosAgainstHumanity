@@ -52,4 +52,3 @@ function newCardDeck() {
     setUrlParams(params);
     setRandomSeed();
 }
-

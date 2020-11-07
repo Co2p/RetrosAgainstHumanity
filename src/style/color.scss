@@ -1,18 +1,25 @@
 $black1: hsl(0, 0%, 0%);
 $black2: hsl(0, 0%, 10%);
 $white1: hsl(0, 0%, 100%);
-$blue1: hsl(207, 39%, 47%);
-$blue2: hsl(207, 39%, 35%);
-$red1: hsl(2, 39%, 47%);
-$red2: hsl(2, 39%, 35%);
-$orange1: hsl(30, 39%, 47%);
-$orange2: hsl(30, 39%, 35%);
+
+$saturation: 70%;
+$lightL: 60%;
+$darkL: 35%;
+
+$blue1: hsl(207, $saturation, $lightL);
+$blue2: hsl(207, $saturation, $darkL);
+$green1: hsl(123, $saturation, $lightL - 35);
+$green2: hsl(123, $saturation, $darkL - 20);
+$red1: hsl(2, $saturation, $lightL - 15);
+$red2: hsl(2, $saturation, $darkL - 10);
+$orange1: hsl(25, $saturation, $lightL);
+$orange2: hsl(25, $saturation, $darkL + 5);
 
 .front {
 
     &.good {
-        @extend .bg-blue1;
-        background: linear-gradient($blue1, $blue2);
+        @extend .bg-green1;
+        background: linear-gradient($green1, $green2);
     }
     
     &.bad {
@@ -21,8 +28,8 @@ $orange2: hsl(30, 39%, 35%);
     }
     
     &.improve {
-        @extend .bg-black1;
-        background: linear-gradient($black1, $black2);
+        @extend .bg-orange1;
+        background: linear-gradient($orange1, $orange2);
     }
 
 }
@@ -33,25 +40,38 @@ $orange2: hsl(30, 39%, 35%);
     background-color: $blue1;
 }
 
-.bg-red1 {
-    color: $white1;
-    background-color: $red1;
-}
-
-.bg-orange1 {
-    color: $white1;
-    background-color: $orange1;
-}
-
 .bg-blue2 {
     color: $white1;
     background-color: $blue2;
+}
+
+.bg-green1 {
+    color: $white1;
+    background-color: $blue1;
+}
+
+.bg-green2 {
+    color: $white1;
+    background-color: $green2;
+}
+
+.bg-red1 {
+    color: $white1;
+    background-color: $red1;
 }
 
 .bg-red2 {
     color: $white1;
     background-color: $red2;
 }
+
+
+.bg-orange1 {
+    color: $white1;
+    background-color: $orange1;
+}
+
+
 
 .bg-orange2 {
     color: $white1;
