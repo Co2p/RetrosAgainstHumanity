@@ -1,8 +1,6 @@
-$cardWidth: 220px;
-$cardHeight: 350px;
 $margin: 8px;
 $padding: 18px;
-$radius: 15px;
+$radius: 8px;
 
 #cardContainer {
     -webkit-perspective: unset;
@@ -13,6 +11,7 @@ $radius: 15px;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    justify-content: center;
     
     .card.flipped {
         transition-duration: 0.5s;
@@ -26,8 +25,6 @@ $radius: 15px;
     
     .card {
         margin: $margin;
-        width: $cardWidth;
-        height: $cardHeight;
         -webkit-transform-style: preserve-3d;
         -webkit-transition: 0.5s;
         -moz-transform-style: preserve-3d;
@@ -65,16 +62,11 @@ $radius: 15px;
             -moz-transform: rotatey(-180deg);
             -webkit-transform: rotatey(-180deg);
             -o-transform: rotatey(-180deg);
+            overflow: hidden;
         }
         
         .back {
-            font-size: 2em;
             display: flex;
-            flex-direction: column-reverse;
-        }
-        
-        .front {
-            font-size: 1.5em;
         }
     }
     

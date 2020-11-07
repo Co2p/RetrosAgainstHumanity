@@ -1,6 +1,6 @@
-import '../style/card.scss';
 import '../style/color.scss';
 import '../style/layout.scss';
+import '../style/retrocard.scss';
 import { words } from "../data/words.json";
 import { mainDeck } from "../data/card.json"
 import { getRandomInt, setRandomSeed } from "./util";
