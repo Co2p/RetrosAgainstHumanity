@@ -37,6 +37,10 @@ $radius: 8px;
         transition: 0.5s;
         
         .side {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none; 
             width: 100%;
             height: 100%;
             padding: $padding;
