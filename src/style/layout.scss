@@ -6,4 +6,10 @@ body {
 nav{
     display: flex;
     padding-left: 1em;
+    justify-content: space-around;
+    .actions {
+        #reset {
+            cursor: pointer;
+        }
+    }
 }
