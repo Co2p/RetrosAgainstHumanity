@@ -7,7 +7,10 @@ nav{
     padding-left: 1em;
     justify-content: space-around;
     .actions {
-        #reset {
+        display: flex;
+        flex-direction: row-reverse;
+        p {
+            margin: 1em;
             cursor: pointer;
         }
     }

@@ -2,53 +2,75 @@ import '../style/color.scss';
 import '../style/layout.scss';
 import '../style/retrocard.scss';
 import { words } from "../data/words.json";
-import { mainDeck } from "../data/card.json"
+import { decks } from "../data/card.json"
 import { getRandomInt, setRandomSeed } from "./util";
 import "./lib/seedrandom";
-import { Deck } from './deck';
+import { Deck } from "./deck";
+import { UrlParamsHandler } from "./url"
 
-function setUrlParams(params) {
-    window.history.replaceState({}, '', `${location.pathname}?${params}`);
-}
+const p = new UrlParamsHandler();
+let deck = new Deck(decks[p.getDeckId()], true);
 
-const params = new URLSearchParams(location.search);
-const seed = params.get("cardStack");
-const draw = params.get("draw");
-
-if (seed !== null) {
+if (p.getCardStack() !== null) {
     setRandomSeed();
 }
 else {
     newCardDeck();
 }
 
-const deck = new Deck(mainDeck, true);
 
 document.getElementById("addRandomCard").addEventListener("click", () => {
     deck.getCard();
-    const newDraw = parseInt(params.get("draw")) + 1;
-    params.set("draw", newDraw);
-    setUrlParams(params);
+    const newDraw = parseInt(p.getDraw()) + 1;
+    p.setDraw(newDraw);
 });
 
-if (draw === null) {
-    params.set("draw", 0);
-    setUrlParams(params);
+if (p.getDraw() === null) {
+    p.setDraw(0);
 }
-for (let index = 0; index < draw; index++) {
+for (let index = 0; index < p.getDraw(); index++) {
     deck.getCard();
 }
 
 document.getElementById("reset").addEventListener("click", () => {
-    params.set("draw", 0)
-    setUrlParams(params);
+    Reset();
+})
+
+function Reset() {
+    p.setDraw(0);
     newCardDeck();
     location.reload();
-})
+}
 
 function newCardDeck() {
     const word = `${words[getRandomInt(words.length)]}${words[getRandomInt(words.length)]}`;
-    params.set("cardStack", word);
-    setUrlParams(params);
+    p.setCardStack(word);
+    // p.setDeckId(deckId);
+    deck = new Deck(decks[p.getDeckId()], true);
     setRandomSeed();
 }
+
+function createDropdown() {
+    let dropdown = document.createElement("select");
+    dropdown.setAttribute("id","idCardDecks");
+    decks.forEach((deck, index) => {
+        dropdown.appendChild(createOptionElement(deck, index))
+    })
+    dropdown.addEventListener("change", (e) => {
+        p.setDeckId(e.target.selectedOptions[0].getAttribute("is"));
+        Reset();
+
+    })
+    document.getElementById("actionsContainer").append(dropdown)
+}
+
+function createOptionElement(deck, index) {
+    const option = document.createElement("option", index);
+    if (index == p.getDeckId()) {
+        option.setAttribute("selected", "selected");
+    }
+    option.innerText = deck.meta.name;
+    return option;
+}
+
+createDropdown();
