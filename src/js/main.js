@@ -9,34 +9,36 @@ import { Deck } from "./deck";
 import { UrlParamsHandler } from "./url"
 
 const p = new UrlParamsHandler();
-let deck = new Deck(decks[p.getDeckId()], true);
+let deck = new Deck(decks[p.getDeckId()], true, true);
 
 if (p.getCardStack() !== null) {
     setRandomSeed();
 }
 else {
-    newCardDeck();
+    // newCardDeck();
 }
 
+document.addEventListener("drawCard", (drawPile) => {
+        const newDraw = parseInt(p.getDraw()) + 1;
+        p.setDraw(newDraw);
+}, false);
 
-document.getElementById("addRandomCard").addEventListener("click", () => {
-    deck.getCard();
-    const newDraw = parseInt(p.getDraw()) + 1;
-    p.setDraw(newDraw);
-});
 
-if (p.getDraw() === null) {
-    p.setDraw(0);
-}
-for (let index = 0; index < p.getDraw(); index++) {
-    deck.getCard();
-}
+drawCardsBasedOnParams();
 
 document.getElementById("reset").addEventListener("click", () => {
     Reset();
 })
 
+function drawCardsBasedOnParams() {
+    const drawNumber = p.getDraw();
+    for (let index = 0; index < drawNumber; index++) {
+        deck.getCardWithoutDrawEvent();
+    }
+}
+
 function Reset() {
+    document.getElementById("cardContainer").innerHTML = "";
     p.setDraw(0);
     newCardDeck();
     location.reload();
@@ -46,7 +48,7 @@ function newCardDeck() {
     const word = `${words[getRandomInt(words.length)]}${words[getRandomInt(words.length)]}`;
     p.setCardStack(word);
     // p.setDeckId(deckId);
-    deck = new Deck(decks[p.getDeckId()], true);
+    deck = new Deck(decks[p.getDeckId()], true, true);
     setRandomSeed();
 }
 
@@ -57,7 +59,7 @@ function createDropdown() {
         dropdown.appendChild(createOptionElement(deck, index))
     })
     dropdown.addEventListener("change", (e) => {
-        p.setDeckId(e.target.selectedOptions[0].getAttribute("is"));
+        p.setDeckId(e.target.selectedOptions[0].getAttribute("id"));
         Reset();
 
     })
@@ -65,10 +67,11 @@ function createDropdown() {
 }
 
 function createOptionElement(deck, index) {
-    const option = document.createElement("option", index);
+    const option = document.createElement("option");
     if (index == p.getDeckId()) {
         option.setAttribute("selected", "selected");
     }
+    option.setAttribute("id", index);
     option.innerText = deck.meta.name;
     return option;
 }

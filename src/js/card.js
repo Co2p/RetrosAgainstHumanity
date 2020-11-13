@@ -2,7 +2,7 @@ import '../style/card.scss';
 
 export class Card {
 
-    constructor(card, back, flipped) {
+    constructor(card, back, allowFlip, flipped) {
         this.text = card.text;
         this.frontClass = card.type;
         this.flipped = flipped ?? false;
@@ -18,9 +18,11 @@ export class Card {
         backDiv.innerText = this.back.text;
         cardDiv.appendChild(front);
         cardDiv.appendChild(backDiv);
-        cardDiv.addEventListener("click", () => {
-            this.flipCard()
-        });
+        if (allowFlip) {
+            cardDiv.addEventListener("click", () => {
+                this.flipCard()
+            });
+        }
         this.card = cardDiv;
     }
     

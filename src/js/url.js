@@ -1,7 +1,6 @@
 export class UrlParamsHandler {
     constructor() {
         this.params = new URLSearchParams(location.search);
-        this.params.set("deckId", this.params.get("deckId") === null ? 0 : this.params.get("deckId"));
     }
 
     setDraw(draw) {
@@ -10,7 +9,7 @@ export class UrlParamsHandler {
     }
 
     getDraw() {
-        return this.params.get("draw");
+        return Number(this.nullCheck("draw", 0));
     }
     
     setCardStack(cardStack) {
@@ -28,7 +27,11 @@ export class UrlParamsHandler {
     }
 
     getDeckId() {
-        return this.params.get("deckId");
+        return Number(this.nullCheck("deckId", 0));
+    }
+
+    nullCheck(param, defaultValue) {
+        return this.params.get(param) == null ? defaultValue : this.params.get(param);
     }
 
     setUrlParams() {
