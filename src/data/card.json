@@ -402,6 +402,34 @@
                 },
                 {
                     "type": "scenario",
+                    "text": "I get by with a little help from _______."
+                },
+                {
+                    "type": "scenario",
+                    "text": "Step 1: ______. Step 2: _______. Step 3: Profit."
+                },
+                {
+                    "type": "scenario",
+                    "text": "Nobody expects ______. Our cheaf weapons are fear, surprise and ______."
+                },
+                {
+                    "type": "scenario",
+                    "text": "What's my secret power?"
+                },
+                {
+                    "type": "scenario",
+                    "text": "50% of all User Storys end with ______."
+                },
+                {
+                    "type": "scenario",
+                    "text": "______ + ______ = ____________."
+                },
+                {
+                    "type": "scenario",
+                    "text": "I got 99 problems but ______ ain't one"
+                },
+                {
+                    "type": "scenario",
                     "text": "Management loves ______."
                 }
             ]
