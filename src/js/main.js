@@ -14,9 +14,6 @@ let deck = new Deck(decks[p.getDeckId()], true, true);
 if (p.getCardStack() !== null) {
     setRandomSeed();
 }
-else {
-    // newCardDeck();
-}
 
 document.addEventListener("drawCard", (drawPile) => {
         const newDraw = parseInt(p.getDraw()) + 1;
