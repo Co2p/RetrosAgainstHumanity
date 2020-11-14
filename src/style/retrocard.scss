@@ -38,9 +38,12 @@ $white2: hsl(51, 2%, 70%);
     &.improve {
         background: linear-gradient($orange1, $orange2);
     }
-    &.scenario, &.star {
+    &.star {
         color: #000;
         background: linear-gradient($yellow1, $yellow2);
+    }
+    &.scenario {
+        background-color: #000;
     }
     &.answer {
         color: #000;
