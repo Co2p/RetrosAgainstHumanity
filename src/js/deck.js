@@ -1,5 +1,5 @@
 import {getRandomInt} from "./util";
-import { Card } from "./card";
+import { StartCard, FaceDownCard, FaceUpCard } from "./card";
 
 export class Deck {
 
@@ -14,7 +14,7 @@ export class Deck {
     }
 
     addInitialCard() {
-        this.drawpile = new Card({type: "drawPile", text: ""}, this.back, false, false);
+        this.drawpile = new StartCard(this.back, );
         this.drawpile.addToPage();
         this.drawpile.card.addEventListener("click", () => {
             this.getCard();
@@ -33,7 +33,12 @@ export class Deck {
         const card = this.deck[i];
         this.deck.splice(i,1);
         if(card) {
-            new Card(card, this.back, true, this.flip).addToPage();
+            if (this.flip) {
+                new FaceUpCard(card, this.back).addToPage();
+            }
+            else {
+                new FaceDownCard(card, this.back).addToPage();
+            }
         }
     }
 }

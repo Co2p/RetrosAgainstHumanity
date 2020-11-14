@@ -2,27 +2,30 @@ import '../style/card.scss';
 
 export class Card {
 
-    constructor(card, back, allowFlip, flipped) {
+    constructor(card, back, flipped) {
         this.text = card.text;
         this.frontClass = card.type;
         this.flipped = flipped ?? false;
         this.back = back;
 
         let cardDiv = document.createElement("div");
-        let front = document.createElement("div");
+        let frontDiv = document.createElement("div");
         let backDiv = document.createElement("div");
+        let removeButtonFront = document.createElement("div");
+        let removeButtonBack = document.createElement("div");
         cardDiv.classList = "card";
-        front.classList = `side front ${this.frontClass}`;
+        removeButtonFront.classList = "remove";
+        removeButtonBack.classList = "remove";
+        frontDiv.classList = `side front ${this.frontClass}`;
         backDiv.classList = `side back ${this.back.class}`;
-        front.innerText = this.text;
+        frontDiv.innerText = this.text;
         backDiv.innerText = this.back.text;
-        cardDiv.appendChild(front);
+        backDiv.appendChild(removeButtonBack);
+        frontDiv.appendChild(removeButtonFront);
+        cardDiv.appendChild(frontDiv);
         cardDiv.appendChild(backDiv);
-        if (allowFlip) {
-            cardDiv.addEventListener("click", () => {
-                this.flipCard()
-            });
-        }
+        removeButtonBack.addEventListener("click", () => this.hide());
+        removeButtonFront.addEventListener("click", () => this.hide());
         this.card = cardDiv;
     }
     
@@ -33,13 +36,30 @@ export class Card {
     addToPage() {
         const container = document.getElementById("cardContainer");
         container.appendChild(this.card);
-        if (this.flipped) {
-            setTimeout(() => this.flipCard(), 100);
-        }
     }
 
     hide () {
         this.card.style = "display: none;";
+    }
+
+    show () {
+        this.card.style = "display: inherit"
+    }
+}
+
+export class StartCard extends Card {
+    constructor(back) {
+        super({type: "drawPile", text: ""}, back)
+    }
+}
+
+class FlippableCard extends Card {
+    constructor(card, back) {
+        super(card, back);
+        this.flipped = false
+        this.card.addEventListener("click", () => {
+            this.flipCard()
+        });
     }
 
     flipCard() {
@@ -47,3 +67,25 @@ export class Card {
         this.flipped = !this.flipped;
     }
 }
+
+export class FaceDownCard extends FlippableCard {
+    constructor(card, back) {
+        super(card,back);
+        this.flipped = false;
+    }
+
+}
+
+export class FaceUpCard extends FlippableCard {
+    constructor(card, back) {
+        super(card,back);
+        this.flipped = true;
+    }
+
+    addToPage() {
+        const container = document.getElementById("cardContainer");
+        container.appendChild(this.card);
+        setTimeout(() => this.flipCard(), 100);
+    }
+}
+

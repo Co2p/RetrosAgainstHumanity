@@ -20,6 +20,18 @@ $white2: hsl(51, 2%, 70%);
     width: $cardWidth;
     height: $cardHeight;
     font-family: monospace;
+    .remove {
+        height: 1rem;
+        width: 1rem;
+        color: #fff;
+        position: absolute;
+        bottom: 0.2rem;
+        right: 0.2rem;
+        font-size: 1rem;
+        &::before {
+            content: "x";
+        }
+    }
 }
 
 .front {
