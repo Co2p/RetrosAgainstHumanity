@@ -7,25 +7,16 @@ export class Card {
         this.frontClass = card.type;
         this.flipped = flipped ?? false;
         this.back = back;
-
         let cardDiv = document.createElement("div");
         let frontDiv = document.createElement("div");
         let backDiv = document.createElement("div");
-        let removeButtonFront = document.createElement("div");
-        let removeButtonBack = document.createElement("div");
         cardDiv.classList = "card";
-        removeButtonFront.classList = "remove";
-        removeButtonBack.classList = "remove";
         frontDiv.classList = `side front ${this.frontClass}`;
         backDiv.classList = `side back ${this.back.class}`;
         frontDiv.innerText = this.text;
         backDiv.innerText = this.back.text;
-        backDiv.appendChild(removeButtonBack);
-        frontDiv.appendChild(removeButtonFront);
         cardDiv.appendChild(frontDiv);
         cardDiv.appendChild(backDiv);
-        removeButtonBack.addEventListener("click", () => this.hide());
-        removeButtonFront.addEventListener("click", () => this.hide());
         this.card = cardDiv;
     }
     
@@ -56,9 +47,21 @@ export class StartCard extends Card {
 class FlippableCard extends Card {
     constructor(card, back) {
         super(card, back);
+
+        this.addRemoveButton();
+
         this.flipped = false
         this.card.addEventListener("click", () => {
-            this.flipCard()
+            this.flipCard();
+        });
+    }
+
+    addRemoveButton() {
+        Array.from(this.card.getElementsByClassName("side")).forEach((side) => {
+            let removeButton = document.createElement("div");
+            removeButton.classList = "remove";
+            side.appendChild(removeButton)
+            removeButton.addEventListener("click", () => this.hide());
         });
     }
 

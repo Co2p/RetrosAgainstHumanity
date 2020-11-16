@@ -35,6 +35,19 @@ $radius: 8px;
         -o-transition: 0.5s;
         transform-style: preserve-3d;
         transition: 0.5s;
+
+        .remove {
+            height: 1rem;
+            width: 1rem;
+            color: #fff;
+            position: absolute;
+            bottom: 0.2rem;
+            right: 0.2rem;
+            font-size: 1rem;
+            &::before {
+                content: "x";
+            }
+        }
         
         .side {
             -webkit-user-select: none;
