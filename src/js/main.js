@@ -6,7 +6,7 @@ import { decks } from "../data/card.json"
 import { getRandomInt, setRandomSeed } from "./util";
 import "./lib/seedrandom";
 import { Deck } from "./deck";
-import { UrlParamsHandler } from "./url"
+import { UrlParamsHandler } from "./ParamsHandler"
 
 const p = new UrlParamsHandler();
 let deck = new Deck(decks[p.getDeckId()], true, true);
