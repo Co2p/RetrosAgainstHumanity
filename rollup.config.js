@@ -5,7 +5,7 @@ import scss from 'rollup-plugin-scss';
 export default {
   input: 'src/js/main.js',
   output: {
-    file: 'js/main.min.js',
+    file: 'static/js/main.min.js',
     format: 'iife',
     plugins: [
       terser(),
@@ -14,7 +14,7 @@ export default {
   plugins: [
     json({ compact: true }),
     scss({
-      output: "css/main.min.css",
+      output: "static/css/main.min.css",
       failOnError: true,
       runtime: require("sass"),
       outputStyle: "compressed",

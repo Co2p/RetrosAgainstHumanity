@@ -80,18 +80,18 @@ $radius: 8px;
             border-radius: $radius;
             border-style: solid;
             border-width: 0;
-            &.front {
-                transform: rotatey(-180deg);
-                -ms-transform: rotatey(-180deg);
-                -moz-transform: rotatey(-180deg);
-                -webkit-transform: rotatey(-180deg);
-                -o-transform: rotatey(-180deg);
-                overflow: hidden;
-            }
-    
-            &.back {
-                display: flex;
-            }
+        }
+        .front {
+            transform: rotatey(-180deg);
+            -ms-transform: rotatey(-180deg);
+            -moz-transform: rotatey(-180deg);
+            -webkit-transform: rotatey(-180deg);
+            -o-transform: rotatey(-180deg);
+            overflow: hidden;
+        }
+
+        .back {
+            display: flex;
         }
 
     }
