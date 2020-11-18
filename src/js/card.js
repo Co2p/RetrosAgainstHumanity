@@ -13,8 +13,8 @@ export class Card {
         cardDiv.classList = "card";
         frontDiv.classList = `side front ${this.frontClass}`;
         backDiv.classList = `side back ${this.back.class}`;
-        frontDiv.innerText = this.text;
-        backDiv.innerText = this.back.text;
+        frontDiv.innerHTML = this.text;
+        backDiv.innerHTML = this.back.text;
         cardDiv.appendChild(frontDiv);
         cardDiv.appendChild(backDiv);
         this.card = cardDiv;
