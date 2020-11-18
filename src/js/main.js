@@ -6,11 +6,13 @@ import { decks } from "../data/card.json"
 import { getRandomInt, setRandomSeed } from "./util";
 import "./lib/seedrandom";
 import { Deck } from "./deck";
-import { UrlParamsHandler } from "./ParamsHandler"
+import { UrlParamsHandler } from "./ParamsHandler";
+import {Modal} from "./Modal";
 
 const p = new UrlParamsHandler();
 let deck = new Deck(decks[p.getDeckId()], true, true);
-
+const t = new Modal();
+updateModal();
 if (p.getCardStack() !== null) {
     setRandomSeed();
 }
@@ -25,6 +27,9 @@ drawCardsBasedOnParams();
 
 document.getElementById("reset").addEventListener("click", () => {
     Reset();
+})
+document.getElementById("about").addEventListener("click", () => {
+    t.show();
 })
 
 function drawCardsBasedOnParams() {
@@ -44,9 +49,15 @@ function Reset() {
 function newCardDeck() {
     const word = `${words[getRandomInt(words.length)]}${words[getRandomInt(words.length)]}`;
     p.setCardStack(word);
-    // p.setDeckId(deckId);
+    updateModal();
     deck = new Deck(decks[p.getDeckId()], true, true);
     setRandomSeed();
+}
+
+function updateModal() {
+    const d = decks[p.getDeckId()];
+    t.setTitle(d.meta.name);
+    t.setText(d.meta.about);
 }
 
 function createDropdown() {
@@ -58,7 +69,6 @@ function createDropdown() {
     dropdown.addEventListener("change", (e) => {
         p.setDeckId(e.target.selectedOptions[0].getAttribute("id"));
         Reset();
-
     })
     document.getElementById("actionsContainer").append(dropdown)
 }

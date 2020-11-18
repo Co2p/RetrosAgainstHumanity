@@ -3,7 +3,7 @@
         {
             "meta": {
                 "name": "Retros Against Humanity",
-                "about": "Cards from BoxUk, check their rules <a href=\"https://www.boxuk.com/insight/retros-against-humanity/\">here</a>"
+                "about": "Cards from BoxUk, check their rules <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://www.boxuk.com/insight/retros-against-humanity/\">here</a>"
             },
             "back": {
                 "text": "Retros Against Humanity",
@@ -145,7 +145,7 @@
         {
             "meta": {
                 "name": "Retros Against Humanity Star",
-                "about": "Star Cards from BoxUk, check their rules <a href=\"https://www.boxuk.com/insight/retros-against-humanity/\">here</a>"
+                "about": "Star Cards from BoxUk, check their rules <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://www.boxuk.com/insight/retros-against-humanity/\">here</a>"
             },
             "back": {
                 "text": "Retros Against Humanity",
@@ -200,7 +200,7 @@
         {
             "meta": {
                 "name": "Cards for Agility Scenarios",
-                "about": "Cards from LithSpeed, check their rules <a href=\"https://lithespeed.com/cards-for-agility/\">here</a>"
+                "about": "Cards from LithSpeed, check their rules <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://lithespeed.com/cards-for-agility/\">here</a>"
             },
             "back": {
                 "class": "bg-black1",
@@ -439,7 +439,7 @@
         {
             "meta": {
                 "name": "Cards for Agility Answers",
-                "about": "Cards from LithSpeed, check their rules <a href=\"https://lithespeed.com/cards-for-agility/\">here</a>"
+                "about": "Cards from LithSpeed, check their rules <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://lithespeed.com/cards-for-agility/\">here</a>"
             },
             "back": {
                 "text": "Cards for Agility",
