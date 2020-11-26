@@ -3,7 +3,7 @@
         {
             "meta": {
                 "name": "Retros Against Humanity",
-                "about": "Cards from BoxUk, check their rules <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://www.boxuk.com/insight/retros-against-humanity/\">here</a>"
+                "about": "Kort från BoxUk, kolla reglerna <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://www.boxuk.com/insight/retros-against-humanity/\">här</a>"
             },
             "back": {
                 "text": "Retros Against Humanity",
@@ -15,7 +15,7 @@
                 },
                 {
                     "type": "good",
-                    "text": "The Colonel’s secret spice contains _____."
+                    "text": "Den hemliga ingrediensen i mormors köttbullar är _____."
                 },
                 {
                     "type": "good",
@@ -23,27 +23,27 @@
                 },
                 {
                     "type": "good",
-                    "text": "_____ was so good even Grumpy Cat smiled."
+                    "text": "_____ var så bra att till och med Grumpy Cat log"
                 },
                 {
                     "type": "good",
-                    "text": "_____ is my chosen weapon in the zombie apocalypse."
+                    "text": "_____ kommer vara mitt vapen i zombieapokalypsen."
                 },
                 {
                     "type": "good",
-                    "text": "The secret weapon in the war against bad sprints is _____."
+                    "text": "Det hemliga vapnet i kriget mot dåliga sprintar är _____."
                 },
                 {
                     "type": "good",
-                    "text": "_____ was all the things, to all the people. "
+                    "text": "_____ var allt, för alla. "
                 },
                 {
                     "type": "good",
-                    "text": "The secret to a good sprint they don’t want you to know about is _____."
+                    "text": "Det hemliga knepet för att få en bra sprint är _____."
                 },
                 {
                     "type": "good",
-                    "text": "More beautiful than a double rainbow; when _____ just works."
+                    "text": "Det är mer vackert än en dubbelregnbåge; när _____ fungerar."
                 },
                 {
                     "type": "good",
@@ -54,19 +54,19 @@
                     "text": "I want to shout it from the rooftops. I love _____."
                 }, {
                     "type": "bad",
-                    "text": "_____ is the modern-day Betamax."
+                    "text": "_____ är dagens Betamax."
                 },
                 {
                     "type": "bad",
-                    "text": "The tenth circle of hell is made up of _____."
+                    "text": "I sista ringen av Dantes inferno finns _____."
                 },
                 {
                     "type": "bad",
-                    "text": "_____ keeps me up at night."
+                    "text": "_____ håller mig vaken om nätterna."
                 },
                 {
                     "type": "bad",
-                    "text": "Ain’t nobody got time for _____."
+                    "text": "Ingen har tid för _____."
                 },
                 {
                     "type": "bad",
@@ -74,78 +74,78 @@
                 },
                 {
                     "type": "bad",
-                    "text": "I wouldn’t wish _____ on my worst enemy."
+                    "text": "Jag skulle inte önska _____ på min värsta fiende."
                 },
                 {
                     "type": "bad",
-                    "text": "Don’t feed gizmo after midnight or you may end up with ______."
+                    "text": "Mata inte Gizmo efter midnatt då kommer du få ______."
                 },
                 {
                     "type": "bad",
-                    "text": "Drawing a perfect circle on an etch a sketch is easier than ______."
+                    "text": "Det är lättare att rita en perfekt cirkel på en Etch A Sketch än att ______."
                 },
                 {
                     "type": "bad",
-                    "text": "The only thing I regret is _____."
+                    "text": "Det enda jag ångrar är _____."
                 },
                 {
                     "type": "bad",
-                    "text": "_____ should be sent to bed without supper."
+                    "text": "_____ borde skickas i säng utan middag."
                 },
                 {
                     "type": "bad",
-                    "text": "If only we’d known about _____ sooner."
+                    "text": "Om vi bara kännt till _____ tidigare."
                 },
                 {
                     "type": "improve",
-                    "text": "We don’t currently _____, but if we did, we’d be the best team in the world."
+                    "text": "Just nu gör vi inte _____, men om vi gjorde det så skulle vi vara bäst i världen."
                 },
                 {
                     "type": "improve",
-                    "text": "______: what’s the worst that could happen?"
+                    "text": "______: vad är det värsta som kan hända?"
                 },
                 {
                     "type": "improve",
-                    "text": "I’m 100% sure, except for maybe ______."
+                    "text": "Jag är 100% säker, förutom kanske ______."
                 },
                 {
                     "type": "improve",
-                    "text": "_____ could save the world. Or it could kill us all."
+                    "text": "_____ kommer rädda världen. Eller utplåna jorden."
                 },
                 {
                     "type": "improve",
-                    "text": "I like to try new things, but is ______ really the answer?"
+                    "text": "Jag tycker om att pröva nya saker, men är verkligen ______ svaret?"
                 },
                 {
                     "type": "improve",
-                    "text": "_____ didn’t go exactly how I’d have liked. But it worked."
+                    "text": "_____ gick inte som jag hade hoppats. Men det funkade."
                 },
                 {
                     "type": "improve",
-                    "text": "_____ surprised me more than Chris Evans leaving Top Gear."
+                    "text": "Jag blev mer förvånad av _____ än när Älgvandringen blev ett fenomen."
                 },
                 {
                     "type": "improve",
-                    "text": "I figured it all out, but _____ still baffles me."
+                    "text": "Jag har löst allt, men _____ förvirrar mig fortfarande."
                 },
                 {
                     "type": "improve",
-                    "text": "______ confused us more than Opal Fruits changing to Starburst."
+                    "text": "______ är mer förvirrande än när Statoil blev Circle-K."
                 },
                 {
                     "type": "improve",
-                    "text": "Why didn’t we think of _____ sooner?"
+                    "text": "Varför tänkte vi inte på _____ tidigare?"
                 },
                 {
                     "type": "improve",
-                    "text": "Who could have guessed that _____ would be a thing this sprint?"
+                    "text": "Vem hade kunnat gissa att _____ skulle bli en grej den här sprinten?"
                 }
             ]
         },
         {
             "meta": {
                 "name": "Retros Against Humanity Star",
-                "about": "Star Cards from BoxUk, check their rules <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://www.boxuk.com/insight/retros-against-humanity/\">here</a>"
+                "about": "Kort från BoxUk, kolla reglerna <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://www.boxuk.com/insight/retros-against-humanity/\">här</a>"
             },
             "back": {
                 "text": "Retros Against Humanity",
@@ -157,11 +157,11 @@
                 },
                 {
                     "type": "star",
-                    "text": "______ is a one man/woman army."
+                    "text": "______ är en arme på en person."
                 },
                 {
                     "type": "star",
-                    "text": "The name’s Bond. ______ Bond."
+                    "text": "Namnet är Bond. ______ Bond."
                 },
                 {
                     "type": "star",
