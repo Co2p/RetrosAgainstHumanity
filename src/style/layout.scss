@@ -31,10 +31,10 @@ nav{
         border-width: 1px;
         border-radius: 0.2rem;
         border-style: solid;
-        width: 25rem;
         z-index: 5;
         box-shadow: 0 0 5px black;
-        padding: 1em;
+        padding: 1rem;
+        margin: 1rem;
         &.hidden {
             display: none;
         }
