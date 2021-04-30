@@ -2,11 +2,11 @@
     "decks": [
         {
             "meta": {
-                "name": "Retros Against Humanity",
+                "name": "Retron Mot Mänskligheten",
                 "about": "Kort från BoxUk, kolla reglerna <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://www.boxuk.com/insight/retros-against-humanity/\">här</a>"
             },
             "back": {
-                "text": "Retros Against Humanity",
+                "text": "Retron Mot Mänskligheten",
                 "class": "bg-black1"
             },
             "front": [{
@@ -51,7 +51,7 @@
                 },
                 {
                     "type": "good",
-                    "text": "I want to shout it from the rooftops. I love _____."
+                    "text": "Jag vill ropa från taken. Jag älskar _____."
                 }, {
                     "type": "bad",
                     "text": "_____ är dagens Betamax."
@@ -1280,7 +1280,7 @@
                 },
                 {
                     "type": "answer",
-                    "text": "transparency"
+                    "text": "transparans"
                 },
                 {
                     "type": "answer",
@@ -1288,7 +1288,7 @@
                 },
                 {
                     "type": "answer",
-                    "text": "a steady stream of consultants"
+                    "text": "en stadig ström med konsulter"
                 },
                 {
                     "type": "answer",
@@ -1296,15 +1296,15 @@
                 },
                 {
                     "type": "answer",
-                    "text": "a bad dream"
+                    "text": "en mardröm"
                 },
                 {
                     "type": "answer",
-                    "text": "the whole team quit"
+                    "text": "hela teamet sa upp sig"
                 },
                 {
                     "type": "answer",
-                    "text": "a sea of cubicles"
+                    "text": "kontorsladskap"
                 },
                 {
                     "type": "answer",
@@ -1312,23 +1312,23 @@
                 },
                 {
                     "type": "answer",
-                    "text": "sticky notes"
+                    "text": "postit lappar"
                 },
                 {
                     "type": "answer",
-                    "text": "index cards"
+                    "text": "index kort"
                 },
                 {
                     "type": "answer",
-                    "text": "a hot cup of coffee"
+                    "text": "värmt kaffe"
                 },
                 {
                     "type": "answer",
-                    "text": "apple pie and ice cream"
+                    "text": "äppelpaj med glass"
                 },
                 {
                     "type": "answer",
-                    "text": "working WIFI"
+                    "text": "fungerande WIFI"
                 },
                 {
                     "type": "answer",
@@ -1336,19 +1336,19 @@
                 },
                 {
                     "type": "answer",
-                    "text": "a pregnant pause"
+                    "text": "en spänd tystnad"
                 },
                 {
                     "type": "answer",
-                    "text": "an uncomfortable silence"
+                    "text": "en pinsam tystnad"
                 },
                 {
                     "type": "answer",
-                    "text": "waiting"
+                    "text": "vänta"
                 },
                 {
                     "type": "answer",
-                    "text": "hurrying"
+                    "text": "skynda"
                 },
                 {
                     "type": "answer",
@@ -1368,11 +1368,11 @@
                 },
                 {
                     "type": "answer",
-                    "text": "Man Hours"
+                    "text": "Mann timmar"
                 },
                 {
                     "type": "answer",
-                    "text": "Add extra developers"
+                    "text": "Lägg till extra utvecklare"
                 },
                 {
                     "type": "answer",
@@ -1392,7 +1392,7 @@
                 },
                 {
                     "type": "answer",
-                    "text": "Story Cards"
+                    "text": "Story-kort"
                 },
                 {
                     "type": "answer",
@@ -1400,7 +1400,7 @@
                 },
                 {
                     "type": "answer",
-                    "text": "Test Plan"
+                    "text": "Testplan"
                 },
                 {
                     "type": "answer",
