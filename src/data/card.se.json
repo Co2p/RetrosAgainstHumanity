@@ -19,7 +19,7 @@
                 },
                 {
                     "type": "good",
-                    "text": "I love the smell of _____ in the morning."
+                    "text": "Jag älskar doften av _____ på morgonen."
                 },
                 {
                     "type": "good",
@@ -94,7 +94,7 @@
                 },
                 {
                     "type": "bad",
-                    "text": "Om vi bara kännt till _____ tidigare."
+                    "text": "Om vi bara känt till _____ tidigare."
                 },
                 {
                     "type": "improve",
@@ -157,7 +157,7 @@
                 },
                 {
                     "type": "star",
-                    "text": "______ är en arme på en person."
+                    "text": "______ är en enmansarmé."
                 },
                 {
                     "type": "star",
@@ -173,23 +173,23 @@
                 },
                 {
                     "type": "star",
-                    "text": "I’d take ______ home to meet the parents."
+                    "text": "Jag hade låtit ______ träffa mina föräldrar."
                 },
                 {
                     "type": "star",
-                    "text": "Nothing compares 2 ______."
+                    "text": "Inget kan jämföras med ______."
                 },
                 {
                     "type": "star",
-                    "text": "Always be yourself, unless you can be ______."
+                    "text": "Var alltid dig själv, såvida du inte kan vara ______."
                 },
                 {
                     "type": "star",
-                    "text": "______: not the hero we want, but the hero we definitely need."
+                    "text": "______: inte den hjälte vi vill ha, men definitivt den hjälte vi behöver."
                 },
                 {
                     "type": "star",
-                    "text": "I’d recommend ______ to a friend."
+                    "text": "Jag skulle rekommendera ______ åt en vän."
                 },
                 {
                     "type": "star",
@@ -328,7 +328,7 @@
                 },
                 {
                     "type": "scenario",
-                    "text": "The only thing better than fast delivery is, fast _____."
+                    "text": "Det enda som är bättre än snabb leverans, är snabb _____."
                 },
                 {
                     "type": "scenario",
@@ -400,15 +400,15 @@
                 },
                 {
                     "type": "scenario",
-                    "text": "The team hates _______."
+                    "text": "Teamet hatar _______."
                 },
                 {
                     "type": "scenario",
-                    "text": "I get by with a little help from _______."
+                    "text": "Jag klarar mig med lite hjälp från _______."
                 },
                 {
                     "type": "scenario",
-                    "text": "Step 1: ______. Step 2: _______. Step 3: Profit."
+                    "text": "Steg 1: ______. Steg 2: _______. Steg 3: Vinst."
                 },
                 {
                     "type": "scenario",
@@ -432,7 +432,7 @@
                 },
                 {
                     "type": "scenario",
-                    "text": "Management loves ______."
+                    "text": "Ledningen älskar ______."
                 }
             ]
         },
@@ -479,11 +479,11 @@
                 },
                 {
                     "type": "answer",
-                    "text": "take a walk"
+                    "text": "gå på en promenad"
                 },
                 {
                     "type": "answer",
-                    "text": "coffee break"
+                    "text": "kaffepaus"
                 },
                 {
                     "type": "answer",
@@ -1180,7 +1180,7 @@
                 },
                 {
                     "type": "answer",
-                    "text": "hard-boiled eggs"
+                    "text": "hårdkokta ägg"
                 },
                 {
                     "type": "answer",
@@ -1216,7 +1216,7 @@
                 },
                 {
                     "type": "answer",
-                    "text": "independence"
+                    "text": "självständighet"
                 },
                 {
                     "type": "answer",
@@ -1232,7 +1232,7 @@
                 },
                 {
                     "type": "answer",
-                    "text": "somebody else's idea"
+                    "text": "någon annans idé"
                 },
                 {
                     "type": "answer",
@@ -1240,15 +1240,15 @@
                 },
                 {
                     "type": "answer",
-                    "text": "I forgot"
+                    "text": "jag glömde"
                 },
                 {
                     "type": "answer",
-                    "text": "magic"
+                    "text": "magi"
                 },
                 {
                     "type": "answer",
-                    "text": "dry-cleaning bags and duct tape"
+                    "text": "kemtvättspåsar och silvertejp"
                 },
                 {
                     "type": "answer",
@@ -1268,7 +1268,7 @@
                 },
                 {
                     "type": "answer",
-                    "text": "a new computer"
+                    "text": "en ny dator"
                 },
                 {
                     "type": "answer",
@@ -1304,7 +1304,7 @@
                 },
                 {
                     "type": "answer",
-                    "text": "kontorsladskap"
+                    "text": "kontorslandskap"
                 },
                 {
                     "type": "answer",
@@ -1312,7 +1312,7 @@
                 },
                 {
                     "type": "answer",
-                    "text": "postit lappar"
+                    "text": "post-it-lappar"
                 },
                 {
                     "type": "answer",
@@ -1368,7 +1368,7 @@
                 },
                 {
                     "type": "answer",
-                    "text": "Mann timmar"
+                    "text": "Mantimmar"
                 },
                 {
                     "type": "answer",
@@ -1376,7 +1376,7 @@
                 },
                 {
                     "type": "answer",
-                    "text": "Leave everyone alone"
+                    "text": "Lämna alla i fred"
                 },
                 {
                     "type": "answer",
