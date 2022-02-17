@@ -1,3 +1,5 @@
+import seedrandom from "seedrandom";
+
 export function getRandomInt(max) {
     return Math.floor(Math.random() * Math.floor(max));
 }
@@ -12,7 +14,7 @@ export function setRandomSeed(seed) {
         seed = params.get("cardStack");
     }
     if (seed) {
-        Math.seedrandom(seed);
+        seedrandom(seed);
     } else {
         throw "noooo"
     }

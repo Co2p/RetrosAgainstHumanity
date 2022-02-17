@@ -4,10 +4,9 @@ import '../style/retrocard.scss';
 import { words } from "../data/words.json";
 import { decks } from "../data/card.json"
 import { getRandomInt, setRandomSeed } from "./util";
-import "./lib/seedrandom";
 import { Deck } from "./deck";
 import { UrlParamsHandler } from "./ParamsHandler";
-import {Modal} from "./Modal";
+import { Modal } from "./Modal";
 
 const p = new UrlParamsHandler();
 let deck = new Deck(decks[p.getDeckId()], true, true);
@@ -18,8 +17,8 @@ if (p.getCardStack() !== null) {
 }
 
 document.addEventListener("drawCard", (drawPile) => {
-        const newDraw = parseInt(p.getDraw()) + 1;
-        p.setDraw(newDraw);
+    const newDraw = parseInt(p.getDraw()) + 1;
+    p.setDraw(newDraw);
 }, false);
 
 
@@ -62,7 +61,7 @@ function updateModal() {
 
 function createDropdown() {
     let dropdown = document.createElement("select");
-    dropdown.setAttribute("id","idCardDecks");
+    dropdown.setAttribute("id", "idCardDecks");
     decks.forEach((deck, index) => {
         dropdown.appendChild(createOptionElement(deck, index))
     })
