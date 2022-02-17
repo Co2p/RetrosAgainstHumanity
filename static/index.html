@@ -8,10 +8,17 @@
     <!-- <script src="https://unpkg.com/peerjs@1.3.1/dist/peerjs.min.js"></script> -->
 </head>
 <body>
-    <nav class="bg-black1">
+    <nav class="bg-black1 actions">
         <div id="actionsContainer" class="actions">
+
+        </div>
+        <div class="actions">
             <p id="reset">Shuffle</p>
             <p id="about">About this Deck</p>
+            <div style="display: none;">
+                <label for="enable_p2p">Sync!</label>
+                <input type="checkbox" name="peer" id="enable_p2p">
+            </div>
         </div>
     </nav>
     <div class="content">
