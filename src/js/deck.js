@@ -1,5 +1,6 @@
-import {getRandomInt} from "./util";
+import { getRandomInt } from "./util";
 import { StartCard, FaceDownCard, FaceUpCard } from "./card";
+import Peer from "peerjs";
 
 export class Deck {
 
@@ -11,10 +12,15 @@ export class Deck {
             this.addInitialCard();
         }
         this.drawEvent = new Event("drawCard");
+        try {
+            this.peer = new Peer();
+        } catch (error) {
+
+        }
     }
 
     addInitialCard() {
-        this.drawpile = new StartCard(this.back, );
+        this.drawpile = new StartCard(this.back);
         this.drawpile.addToPage();
         this.drawpile.card.addEventListener("click", () => {
             this.getCard();
@@ -25,14 +31,14 @@ export class Deck {
         this.getCard(false);
     }
 
-    getCard (countAsDraw = true) {
+    getCard(countAsDraw = true) {
         if (countAsDraw) {
             document.dispatchEvent(this.drawEvent);
         }
         const i = getRandomInt(this.deck.length);
         const card = this.deck[i];
-        this.deck.splice(i,1);
-        if(card) {
+        this.deck.splice(i, 1);
+        if (card) {
             if (this.flip) {
                 new FaceUpCard(card, this.back).addToPage();
             }

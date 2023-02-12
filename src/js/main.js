@@ -8,31 +8,14 @@ import { Deck } from "./deck";
 import { UrlParamsHandler } from "./ParamsHandler";
 import { Modal } from "./Modal";
 
-const p = new UrlParamsHandler();
-let deck = new Deck(decks[p.getDeckId()], true, true);
-const t = new Modal();
-updateModal();
-if (p.getCardStack() !== null) {
-    setRandomSeed();
-}
+const urlParamsHandler = new UrlParamsHandler();
+const modal = new Modal();
+let deck = new Deck(decks[urlParamsHandler.getDeckId()], true, true);
+const resetButton = document.getElementById("reset");
+const aboutButton = document.getElementById("about");
 
-document.addEventListener("drawCard", (drawPile) => {
-    const newDraw = parseInt(p.getDraw()) + 1;
-    p.setDraw(newDraw);
-}, false);
-
-
-drawCardsBasedOnParams();
-
-document.getElementById("reset").addEventListener("click", () => {
-    Reset();
-})
-document.getElementById("about").addEventListener("click", () => {
-    t.show();
-})
-
-function drawCardsBasedOnParams() {
-    const drawNumber = p.getDraw();
+function drawCardsBasedOnParams(deck) {
+    const drawNumber = urlParamsHandler.getDraw();
     for (let index = 0; index < drawNumber; index++) {
         deck.getCardWithoutDrawEvent();
     }
@@ -40,23 +23,23 @@ function drawCardsBasedOnParams() {
 
 function Reset() {
     document.getElementById("cardContainer").innerHTML = "";
-    p.setDraw(0);
-    newCardDeck();
+    urlParamsHandler.setDraw(0);
     location.reload();
 }
 
 function newCardDeck() {
+    console.log(this);
     const word = `${words[getRandomInt(words.length)]}${words[getRandomInt(words.length)]}`;
-    p.setCardStack(word);
+    urlParamsHandler.setCardStack(word);
     updateModal();
-    deck = new Deck(decks[p.getDeckId()], true, true);
+    deck = new Deck(decks[urlParamsHandler.getDeckId()], true, true);
     setRandomSeed();
 }
 
 function updateModal() {
-    const d = decks[p.getDeckId()];
-    t.setTitle(d.meta.name);
-    t.setText(d.meta.about);
+    const d = decks[urlParamsHandler.getDeckId()];
+    modal.setTitle(d.meta.name);
+    modal.setText(d.meta.about);
 }
 
 function createDropdown() {
@@ -66,7 +49,7 @@ function createDropdown() {
         dropdown.appendChild(createOptionElement(deck, index))
     })
     dropdown.addEventListener("change", (e) => {
-        p.setDeckId(e.target.selectedOptions[0].getAttribute("id"));
+        urlParamsHandler.setDeckId(e.target.selectedOptions[0].getAttribute("id"));
         Reset();
     })
     document.getElementById("actionsContainer").append(dropdown)
@@ -74,7 +57,7 @@ function createDropdown() {
 
 function createOptionElement(deck, index) {
     const option = document.createElement("option");
-    if (index == p.getDeckId()) {
+    if (index == urlParamsHandler.getDeckId()) {
         option.setAttribute("selected", "selected");
     }
     option.setAttribute("id", index);
@@ -82,4 +65,30 @@ function createOptionElement(deck, index) {
     return option;
 }
 
-createDropdown();
+
+function init() {
+    updateModal();
+    if (urlParamsHandler.getCardStack() !== null) {
+        newCardDeck();
+    }
+
+    document.addEventListener("drawCard", (drawPile) => {
+        const newDraw = parseInt(urlParamsHandler.getDraw()) + 1;
+        console.log(drawPile);
+        urlParamsHandler.setDraw(newDraw);
+    }, false);
+
+
+    drawCardsBasedOnParams(deck);
+
+    resetButton.addEventListener("click", () => {
+        Reset();
+    })
+    aboutButton.addEventListener("click", () => {
+        modal.show();
+    })
+    createDropdown();
+}
+
+
+init();
