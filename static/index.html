@@ -29,8 +29,15 @@
                 <span id="peerId" style="font-size: 0.8em; color: #666;"></span>
             </div>
             <div id="connectionControls">
-                <input type="text" id="peerIdInput" placeholder="Enter peer ID to connect...">
-                <button id="connectBtn">Connect</button>
+                <button id="createRoomBtn">Create Room</button>
+                <div id="roomInfo" style="display: none;">
+                    <span>Room: <strong id="roomId"></strong></span>
+                    <button id="copyRoomBtn">Copy Room Link</button>
+                </div>
+                <div id="joinControls">
+                    <input type="text" id="peerIdInput" placeholder="Enter peer ID or room ID to connect...">
+                    <button id="connectBtn">Connect</button>
+                </div>
             </div>
             <div id="connectedUsers">
                 <h4>Connected Users:</h4>

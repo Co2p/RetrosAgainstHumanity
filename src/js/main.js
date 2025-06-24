@@ -69,13 +69,26 @@ function createOptionElement(deck, index) {
 }
 
 function initializeP2P() {
-    p2pManager = new P2PManager();
+    p2pManager = new P2PManager(urlParamsHandler);
     
     // Update UI with user info
     p2pManager.on('peerReady', (data) => {
         document.getElementById('currentUser').textContent = data.username;
         document.getElementById('peerId').textContent = `ID: ${data.id}`;
         console.log('P2P ready:', data);
+    });
+    
+    // Handle room events
+    p2pManager.on('roomCreated', (data) => {
+        document.getElementById('roomId').textContent = data.roomId;
+        document.getElementById('roomInfo').style.display = 'block';
+        showSyncNotification('Room created! Share the URL with others to connect.');
+    });
+    
+    p2pManager.on('roomJoined', (data) => {
+        document.getElementById('roomId').textContent = data.roomId;
+        document.getElementById('roomInfo').style.display = 'block';
+        showSyncNotification('Joined room: ' + data.roomId);
     });
     
     // Handle peer connections
@@ -216,6 +229,8 @@ function init() {
     const p2pCheckbox = document.getElementById("enable_p2p");
     const connectBtn = document.getElementById("connectBtn");
     const peerIdInput = document.getElementById("peerIdInput");
+    const createRoomBtn = document.getElementById("createRoomBtn");
+    const copyRoomBtn = document.getElementById("copyRoomBtn");
     
     p2pCheckbox.addEventListener("change", (e) => {
         if (e.target.checked) {
@@ -225,10 +240,43 @@ function init() {
         }
     });
     
+    createRoomBtn.addEventListener("click", () => {
+        if (p2pManager) {
+            p2pManager.createRoom();
+        }
+    });
+    
+    copyRoomBtn.addEventListener("click", () => {
+        const roomUrl = window.location.href;
+        navigator.clipboard.writeText(roomUrl).then(() => {
+            showSyncNotification('Room URL copied to clipboard!');
+        }).catch(err => {
+            console.error('Failed to copy URL:', err);
+            // Fallback for older browsers
+            const textArea = document.createElement('textarea');
+            textArea.value = roomUrl;
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textArea);
+            showSyncNotification('Room URL copied to clipboard!');
+        });
+    });
+    
     connectBtn.addEventListener("click", () => {
         const peerId = peerIdInput.value.trim();
         if (peerId && p2pManager) {
-            p2pManager.connectToPeer(peerId);
+            if (peerId.includes('://') || peerId.includes('room=')) {
+                // Extract room ID from URL
+                const urlParams = new URLSearchParams(peerId.split('?')[1] || '');
+                const roomId = urlParams.get('room');
+                if (roomId) {
+                    p2pManager.joinRoom(roomId);
+                }
+            } else {
+                // Direct peer connection
+                p2pManager.connectToPeer(peerId);
+            }
             peerIdInput.value = '';
         }
     });

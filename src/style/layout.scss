@@ -52,17 +52,9 @@ nav{
     
     #connectionControls {
         display: flex;
+        flex-direction: column;
         gap: 0.5rem;
-        align-items: center;
         margin-bottom: 1rem;
-        
-        input[type="text"] {
-            flex: 1;
-            padding: 0.5rem;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            font-size: 14px;
-        }
         
         button {
             padding: 0.5rem 1rem;
@@ -75,6 +67,56 @@ nav{
             
             &:hover {
                 background-color: #45a049;
+            }
+            
+            &#createRoomBtn {
+                background-color: #2196F3;
+                
+                &:hover {
+                    background-color: #1976D2;
+                }
+            }
+            
+            &#copyRoomBtn {
+                background-color: #FF9800;
+                font-size: 12px;
+                padding: 0.3rem 0.6rem;
+                
+                &:hover {
+                    background-color: #F57C00;
+                }
+            }
+        }
+        
+        #roomInfo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem;
+            background-color: #e3f2fd;
+            border-radius: 4px;
+            font-size: 14px;
+            
+            #roomId {
+                font-family: monospace;
+                background-color: white;
+                padding: 0.2rem 0.4rem;
+                border-radius: 3px;
+                border: 1px solid #ccc;
+            }
+        }
+        
+        #joinControls {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+            
+            input[type="text"] {
+                flex: 1;
+                padding: 0.5rem;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                font-size: 14px;
             }
         }
     }

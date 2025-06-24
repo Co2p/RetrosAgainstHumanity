@@ -18,13 +18,14 @@ export class PeerInterface {
 }
 
 export class P2PManager {
-    constructor() {
+    constructor(urlParamsHandler) {
         this.peer = null;
         this.connections = new Map();
         this.username = getRandomAnimalName();
         this.roomId = null;
         this.isHost = false;
         this.eventHandlers = new Map();
+        this.urlParamsHandler = urlParamsHandler;
         
         this.initialize();
     }
@@ -36,6 +37,12 @@ export class P2PManager {
             this.peer.on('open', (id) => {
                 console.log('My peer ID is: ' + id);
                 this.trigger('peerReady', { id, username: this.username });
+                
+                // Check if there's a room ID in the URL and try to join
+                const roomId = this.urlParamsHandler.getRoomId();
+                if (roomId) {
+                    this.joinRoom(roomId);
+                }
             });
 
             this.peer.on('connection', (conn) => {
@@ -49,6 +56,32 @@ export class P2PManager {
         } catch (error) {
             console.error('Failed to initialize P2P:', error);
         }
+    }
+
+    createRoom() {
+        if (!this.peer) return null;
+        
+        // Use the peer ID as the room ID for simplicity
+        const roomId = this.peer.id;
+        this.roomId = roomId;
+        this.isHost = true;
+        this.urlParamsHandler.setRoomId(roomId);
+        
+        this.trigger('roomCreated', { roomId });
+        return roomId;
+    }
+
+    joinRoom(roomId) {
+        if (!this.peer || !roomId) return;
+        
+        this.roomId = roomId;
+        this.isHost = false;
+        this.urlParamsHandler.setRoomId(roomId);
+        
+        // Connect to the room host
+        this.connectToPeer(roomId);
+        
+        this.trigger('roomJoined', { roomId });
     }
 
     handleIncomingConnection(conn) {

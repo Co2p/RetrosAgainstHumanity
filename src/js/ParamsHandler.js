@@ -37,4 +37,13 @@ export class UrlParamsHandler {
     setUrlParams() {
         window.history.replaceState({}, '', `${location.pathname}?${this.params}`);
     }
+
+    setRoomId(roomId) {
+        this.params.set("room", roomId);
+        this.setUrlParams();
+    }
+
+    getRoomId() {
+        return this.params.get("room");
+    }
 }
