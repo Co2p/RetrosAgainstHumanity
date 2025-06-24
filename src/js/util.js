@@ -19,3 +19,17 @@ export function setRandomSeed(seed) {
         throw "noooo"
     }
 }
+
+const animalNames = [
+    "Cat", "Dog", "Unicorn", "Dragon", "Phoenix", "Tiger", "Lion", "Bear", 
+    "Wolf", "Fox", "Rabbit", "Elephant", "Giraffe", "Zebra", "Panda", 
+    "Koala", "Kangaroo", "Dolphin", "Whale", "Shark", "Eagle", "Hawk", 
+    "Owl", "Parrot", "Penguin", "Flamingo", "Butterfly", "Bee", "Turtle", 
+    "Octopus", "Horse", "Deer", "Moose", "Hippo", "Rhino", "Cheetah", 
+    "Leopard", "Jaguar", "Lynx", "Raccoon", "Squirrel", "Chipmunk", 
+    "Hedgehog", "Otter", "Seal", "Peacock", "Swan", "Duck", "Goose"
+];
+
+export function getRandomAnimalName() {
+    return animalNames[getRandomInt(animalNames.length)];
+}

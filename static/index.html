@@ -16,13 +16,34 @@
         <div class="actions">
             <p id="reset">Shuffle</p>
             <p id="about">About this Deck</p>
-            <div style="display: none;">
+            <div id="p2pControls">
                 <label for="enable_p2p">Sync!</label>
                 <input type="checkbox" name="peer" id="enable_p2p">
             </div>
         </div>
     </nav>
     <div class="content">
+        <div id="p2pStatus" style="display: none;">
+            <div id="userInfo">
+                <span>You are: <strong id="currentUser"></strong></span>
+                <span id="peerId" style="font-size: 0.8em; color: #666;"></span>
+            </div>
+            <div id="connectionControls">
+                <button id="createRoomBtn">Create Room</button>
+                <div id="roomInfo" style="display: none;">
+                    <span>Room: <strong id="roomId"></strong></span>
+                    <button id="copyRoomBtn">Copy Room Link</button>
+                </div>
+                <div id="joinControls">
+                    <input type="text" id="peerIdInput" placeholder="Enter peer ID or room ID to connect...">
+                    <button id="connectBtn">Connect</button>
+                </div>
+            </div>
+            <div id="connectedUsers">
+                <h4>Connected Users:</h4>
+                <ul id="usersList"></ul>
+            </div>
+        </div>
         <div id="modalContainer"></div>
         <div id="cardContainer"></div>
     </div>
