@@ -229,6 +229,13 @@ function init() {
         newCardDeck();
     }
 
+    // Auto-enable P2P if there's a room ID in the URL
+    const roomId = urlParamsHandler.getRoomId();
+    if (roomId) {
+        document.getElementById("enable_p2p").checked = true;
+        enableP2P();
+    }
+
     document.addEventListener("drawCard", (drawPile) => {
         const newDraw = parseInt(urlParamsHandler.getDraw()) + 1;
         console.log(drawPile);
