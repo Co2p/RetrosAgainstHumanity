@@ -7,10 +7,13 @@ export class Card {
         this.frontClass = card.type;
         this.flipped = flipped ?? false;
         this.back = back;
+        this.cardId = `card-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+        
         let cardDiv = document.createElement("div");
         let frontDiv = document.createElement("div");
         let backDiv = document.createElement("div");
         cardDiv.classList = "card";
+        cardDiv.id = this.cardId;
         frontDiv.classList = `side front ${this.frontClass}`;
         backDiv.classList = `side back ${this.back.class}`;
         frontDiv.innerText = this.text;
@@ -68,6 +71,17 @@ class FlippableCard extends Card {
     flipCard() {
         this.card.classList.toggle("flipped");
         this.flipped = !this.flipped;
+        
+        // Dispatch custom event for P2P sync
+        const flipEvent = new CustomEvent("cardFlipped", {
+            detail: {
+                cardText: this.text,
+                cardType: this.frontClass,
+                flipped: this.flipped,
+                cardId: this.cardId
+            }
+        });
+        document.dispatchEvent(flipEvent);
     }
 }
 

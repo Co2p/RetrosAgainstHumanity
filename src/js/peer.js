@@ -1,9 +1,12 @@
-class PeerInterface {
+import Peer from "peerjs";
+import { getRandomAnimalName } from "./util";
+
+export class PeerInterface {
     constructor(id) {
         this.peer = new Peer();
-        this.conn = peer.connect(id);
+        this.conn = this.peer.connect(id);
         this.conn.on('open', () => {
-            conn.on('data', function(data) {
+            this.conn.on('data', (data) => {
                 console.log('Received', data);
             });
         });
@@ -11,5 +14,226 @@ class PeerInterface {
 
     send(data) {
         this.conn.send(data);
+    }
+}
+
+export class P2PManager {
+    constructor() {
+        this.peer = null;
+        this.connections = new Map();
+        this.username = getRandomAnimalName();
+        this.roomId = null;
+        this.isHost = false;
+        this.eventHandlers = new Map();
+        
+        this.initialize();
+    }
+
+    initialize() {
+        try {
+            this.peer = new Peer();
+            
+            this.peer.on('open', (id) => {
+                console.log('My peer ID is: ' + id);
+                this.trigger('peerReady', { id, username: this.username });
+            });
+
+            this.peer.on('connection', (conn) => {
+                this.handleIncomingConnection(conn);
+            });
+
+            this.peer.on('error', (err) => {
+                console.error('Peer error:', err);
+                this.trigger('error', err);
+            });
+        } catch (error) {
+            console.error('Failed to initialize P2P:', error);
+        }
+    }
+
+    handleIncomingConnection(conn) {
+        console.log('Incoming connection from:', conn.peer);
+        
+        conn.on('open', () => {
+            this.connections.set(conn.peer, {
+                conn: conn,
+                username: null
+            });
+            
+            // Send our username to the new peer
+            conn.send({
+                type: 'userInfo',
+                username: this.username,
+                peerId: this.peer.id
+            });
+            
+            this.trigger('peerConnected', { peerId: conn.peer });
+        });
+
+        conn.on('data', (data) => {
+            this.handleMessage(data, conn.peer);
+        });
+
+        conn.on('close', () => {
+            this.connections.delete(conn.peer);
+            this.trigger('peerDisconnected', { peerId: conn.peer });
+        });
+    }
+
+    connectToPeer(peerId) {
+        if (this.connections.has(peerId)) {
+            return;
+        }
+
+        const conn = this.peer.connect(peerId);
+        
+        conn.on('open', () => {
+            this.connections.set(peerId, {
+                conn: conn,
+                username: null
+            });
+            
+            // Send our username
+            conn.send({
+                type: 'userInfo',
+                username: this.username,
+                peerId: this.peer.id
+            });
+            
+            this.trigger('peerConnected', { peerId });
+        });
+
+        conn.on('data', (data) => {
+            this.handleMessage(data, peerId);
+        });
+
+        conn.on('close', () => {
+            this.connections.delete(peerId);
+            this.trigger('peerDisconnected', { peerId });
+        });
+    }
+
+    handleMessage(data, fromPeerId) {
+        console.log('Received message:', data, 'from:', fromPeerId);
+        
+        switch (data.type) {
+            case 'userInfo':
+                const connection = this.connections.get(fromPeerId);
+                if (connection) {
+                    connection.username = data.username;
+                    this.trigger('userInfoReceived', { 
+                        peerId: fromPeerId, 
+                        username: data.username 
+                    });
+                }
+                break;
+                
+            case 'cardFlip':
+                this.trigger('cardFlip', { 
+                    fromPeerId, 
+                    fromUsername: this.connections.get(fromPeerId)?.username,
+                    cardData: data.cardData 
+                });
+                break;
+                
+            case 'cardDraw':
+                this.trigger('cardDraw', { 
+                    fromPeerId, 
+                    fromUsername: this.connections.get(fromPeerId)?.username,
+                    cardData: data.cardData 
+                });
+                break;
+        }
+    }
+
+    broadcast(message) {
+        this.connections.forEach((connection) => {
+            if (connection.conn && connection.conn.open) {
+                connection.conn.send(message);
+            }
+        });
+    }
+
+    broadcastCardFlip(cardData) {
+        this.broadcast({
+            type: 'cardFlip',
+            cardData: cardData,
+            timestamp: Date.now()
+        });
+    }
+
+    broadcastCardDraw(cardData) {
+        this.broadcast({
+            type: 'cardDraw',
+            cardData: cardData,
+            timestamp: Date.now()
+        });
+    }
+
+    getConnectedUsers() {
+        const users = [];
+        this.connections.forEach((connection, peerId) => {
+            if (connection.username) {
+                users.push({
+                    peerId: peerId,
+                    username: connection.username
+                });
+            }
+        });
+        return users;
+    }
+
+    on(event, handler) {
+        if (!this.eventHandlers.has(event)) {
+            this.eventHandlers.set(event, []);
+        }
+        this.eventHandlers.get(event).push(handler);
+    }
+
+    off(event, handler) {
+        if (this.eventHandlers.has(event)) {
+            const handlers = this.eventHandlers.get(event);
+            const index = handlers.indexOf(handler);
+            if (index > -1) {
+                handlers.splice(index, 1);
+            }
+        }
+    }
+
+    trigger(event, data = {}) {
+        if (this.eventHandlers.has(event)) {
+            this.eventHandlers.get(event).forEach(handler => {
+                try {
+                    handler(data);
+                } catch (error) {
+                    console.error('Error in event handler:', error);
+                }
+            });
+        }
+    }
+
+    getPeerId() {
+        return this.peer ? this.peer.id : null;
+    }
+
+    getUsername() {
+        return this.username;
+    }
+
+    isConnected() {
+        return this.connections.size > 0;
+    }
+
+    disconnect() {
+        this.connections.forEach((connection) => {
+            if (connection.conn) {
+                connection.conn.close();
+            }
+        });
+        this.connections.clear();
+        
+        if (this.peer) {
+            this.peer.destroy();
+        }
     }
 }
