@@ -115,35 +115,53 @@ export class P2PManager {
 
     connectToPeer(peerId) {
         if (this.connections.has(peerId)) {
+            console.log('Already connected to peer:', peerId);
             return;
         }
 
-        const conn = this.peer.connect(peerId);
-        
-        conn.on('open', () => {
-            this.connections.set(peerId, {
-                conn: conn,
-                username: null
-            });
-            
-            // Send our username
-            conn.send({
-                type: 'userInfo',
-                username: this.username,
-                peerId: this.peer.id
-            });
-            
-            this.trigger('peerConnected', { peerId });
-        });
+        if (!this.peer || this.peer.destroyed) {
+            console.error('Peer not ready for connections');
+            this.trigger('error', { message: 'Peer not ready for connections' });
+            return;
+        }
 
-        conn.on('data', (data) => {
-            this.handleMessage(data, peerId);
-        });
+        try {
+            const conn = this.peer.connect(peerId);
+            
+            conn.on('open', () => {
+                this.connections.set(peerId, {
+                    conn: conn,
+                    username: null
+                });
+                
+                // Send our username
+                conn.send({
+                    type: 'userInfo',
+                    username: this.username,
+                    peerId: this.peer.id
+                });
+                
+                this.trigger('peerConnected', { peerId });
+            });
 
-        conn.on('close', () => {
-            this.connections.delete(peerId);
-            this.trigger('peerDisconnected', { peerId });
-        });
+            conn.on('data', (data) => {
+                this.handleMessage(data, peerId);
+            });
+
+            conn.on('close', () => {
+                this.connections.delete(peerId);
+                this.trigger('peerDisconnected', { peerId });
+            });
+
+            conn.on('error', (err) => {
+                console.error('Connection error with peer', peerId, ':', err);
+                this.connections.delete(peerId);
+                this.trigger('connectionError', { peerId, error: err });
+            });
+        } catch (error) {
+            console.error('Failed to connect to peer:', error);
+            this.trigger('connectionError', { peerId, error });
+        }
     }
 
     handleMessage(data, fromPeerId) {
@@ -180,11 +198,21 @@ export class P2PManager {
     }
 
     broadcast(message) {
-        this.connections.forEach((connection) => {
+        let sentCount = 0;
+        this.connections.forEach((connection, peerId) => {
             if (connection.conn && connection.conn.open) {
-                connection.conn.send(message);
+                try {
+                    connection.conn.send(message);
+                    sentCount++;
+                } catch (error) {
+                    console.error('Failed to send message to peer', peerId, ':', error);
+                    // Remove broken connection
+                    this.connections.delete(peerId);
+                    this.trigger('peerDisconnected', { peerId });
+                }
             }
         });
+        return sentCount;
     }
 
     broadcastCardFlip(cardData) {

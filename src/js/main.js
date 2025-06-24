@@ -110,11 +110,19 @@ function initializeP2P() {
     // Handle incoming card flips
     p2pManager.on('cardFlip', (data) => {
         console.log('Received card flip from', data.fromUsername, ':', data.cardData);
+        
         // Find the card and sync its flip state
         const cardElement = document.getElementById(data.cardData.cardId);
-        if (cardElement && cardElement.classList.contains('flipped') !== data.cardData.flipped) {
-            cardElement.classList.toggle('flipped');
-            showSyncNotification(`${data.fromUsername} flipped a card`);
+        if (cardElement) {
+            const isCurrentlyFlipped = cardElement.classList.contains('flipped');
+            if (isCurrentlyFlipped !== data.cardData.flipped) {
+                cardElement.classList.toggle('flipped');
+                showSyncNotification(`${data.fromUsername} flipped a card`);
+            }
+        } else {
+            // Card doesn't exist locally - this could happen if users have different card states
+            console.warn('Received flip for unknown card:', data.cardData.cardId);
+            showSyncNotification(`${data.fromUsername} flipped a card (not visible locally)`, 'warning');
         }
     });
     
@@ -122,6 +130,17 @@ function initializeP2P() {
     p2pManager.on('cardDraw', (data) => {
         console.log('Received card draw from', data.fromUsername, ':', data.cardData);
         showSyncNotification(`${data.fromUsername} drew a card`);
+    });
+    
+    // Handle errors
+    p2pManager.on('error', (error) => {
+        console.error('P2P Error:', error);
+        showSyncNotification('P2P Error: ' + (error.message || 'Connection failed'), 'error');
+    });
+    
+    p2pManager.on('connectionError', (data) => {
+        console.error('Connection Error:', data);
+        showSyncNotification(`Failed to connect to peer: ${data.peerId}`, 'error');
     });
 }
 
@@ -146,30 +165,46 @@ function updateConnectedUsers() {
     }
 }
 
-function showSyncNotification(message) {
+function showSyncNotification(message, type = 'success') {
     // Create a temporary notification
     const notification = document.createElement('div');
     notification.textContent = message;
+    
+    let backgroundColor;
+    switch (type) {
+        case 'error':
+            backgroundColor = '#f44336';
+            break;
+        case 'warning':
+            backgroundColor = '#ff9800';
+            break;
+        default:
+            backgroundColor = '#4CAF50';
+    }
+    
     notification.style.cssText = `
         position: fixed;
         top: 20px;
         right: 20px;
-        background: #4CAF50;
+        background: ${backgroundColor};
         color: white;
         padding: 10px 15px;
         border-radius: 5px;
         z-index: 1000;
         font-size: 14px;
+        max-width: 300px;
+        word-wrap: break-word;
     `;
     
     document.body.appendChild(notification);
     
-    // Remove after 3 seconds
+    // Remove after 4 seconds for errors, 3 seconds for success
+    const timeout = type === 'error' ? 4000 : 3000;
     setTimeout(() => {
         if (notification.parentNode) {
             notification.parentNode.removeChild(notification);
         }
-    }, 3000);
+    }, timeout);
 }
 
 function enableP2P() {
